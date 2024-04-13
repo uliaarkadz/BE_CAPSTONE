@@ -1,0 +1,6 @@
+﻿services:
+  webserviceapp:
+    image: webserviceapp
+    build:
+      context: .
+      dockerfile: WebServiceApp/Dockerfile
