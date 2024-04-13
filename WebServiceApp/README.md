@@ -5,7 +5,7 @@
 - **Developer: Yuliya Buiko**
 - **App Name: E-Commerce App**
 - **Description: Back-end for a full-stack ecommerce web application. The system should have an interface to list products for sale, inserting and updating products, adding products to cart, completing purchases, see fulfilment status, it should also offer a method for searching products and tracking inventory.**
-- **GitHub Url Back End: **
+- **GitHub Url Back End: https://github.com/uliaarkadz/BE_CAPSTONE.git**
 
 - **Deployed WebSite BE:**
 
