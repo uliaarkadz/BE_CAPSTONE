@@ -46,6 +46,6 @@ public class Customer()
     [MaxLength(5)]
     public string? Zip { get; set; }
 
-    //public ICollection<PointOfInterest> PointsOfInterest { get; set; } = new List<PointOfInterest>();
+    public ICollection<Cart> Carts { get; set; }
 
 }

@@ -20,7 +20,7 @@ public interface IStoreRepository
     Task<bool> SaveChangesAsync();
     void AddProduct(Product product);
     void AddCustomer(Customer customer);
-    Task AddProductCart(int cartId, Product product);
+    void AddProductCart(Cart cart);
     void DeleteProduct(Product product);
     void DeleteCustomer(Customer customer);
     void DeleteCart(Cart cart);

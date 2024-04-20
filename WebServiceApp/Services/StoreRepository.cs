@@ -45,12 +45,12 @@ public class StoreRepository : IStoreRepository
     
     public async Task<List<Cart>> GetCartItemsAsync(int customerId)
     {
-        return await _context.Cart.Where(c => c.Id == customerId).ToListAsync();
+        return await _context.Cart.Where(c => c.CustomerId == customerId).ToListAsync();
     }
     
-    public async Task<bool>CartExistsAsync(int productId)
+    public async Task<bool>CartExistsAsync(int cartId)
     {
-        return await _context.Product.AnyAsync(c => c.Id == productId);
+        return await _context.Product.AnyAsync(c => c.Id == cartId);
     }
     
     public async Task<Cart?> GetCartItemAsync(int cartId)
@@ -68,10 +68,10 @@ public class StoreRepository : IStoreRepository
         _context.Add(customer);
     }
     
-    public async Task AddProductCart(int cartId,Product product)
+    public void AddProductCart(Cart cart)
     {
-        var cart = await GetCartItemAsync(cartId);
-        cart?.Products.Add(product);
+        //var cart = await GetCartItemAsync(cartId);
+        _context.Add(cart);
     }
     public void DeleteProduct(Product product)
     {

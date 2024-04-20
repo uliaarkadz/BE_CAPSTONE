@@ -13,14 +13,14 @@ public class Cart
     [Column("customerId")]
     [Required]
     [ForeignKey("customerid")]
-    public Customer? Customer { get; set; }
     public int CustomerId { get; set; }
+    public Customer Customer{ get; set; }
 
     [Column("productid")]
     [Required]
     [ForeignKey("productid")]
-    public Product? Product { get; set; }
     public int ProductId { get; set; }
+    public Product Product{ get; set; }
     
     [Column("totalamount")]
     public double TotalAmount { get; set; }
@@ -28,5 +28,6 @@ public class Cart
     [Column("quantity")]
     public int Quantity { get; set; }
     
-    public ICollection<Product> Products { get; set; } = new List<Product>();
+    public ICollection<Order> Orders { get; set; }
+ 
 }

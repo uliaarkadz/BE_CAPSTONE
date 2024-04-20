@@ -23,6 +23,7 @@ public class Product
     [MaxLength(500)]
     public double? Price { get; set; }
     
+    public ICollection<Cart> Carts { get; set; }
     public Product(string name)
     {
         Name = name;

@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using WebServiceApp.DbContext;
@@ -11,9 +12,11 @@ using WebServiceApp.DbContext;
 namespace WebServiceApp.Migrations
 {
     [DbContext(typeof(StoreContext))]
-    partial class StoreContextModelSnapshot : ModelSnapshot
+    [Migration("20240420012913_StoreDesc5")]
+    partial class StoreDesc5
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -35,6 +38,9 @@ namespace WebServiceApp.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("customerId");
 
+                    b.Property<int?>("OrderId")
+                        .HasColumnType("integer");
+
                     b.Property<int>("ProductId")
                         .HasColumnType("integer")
                         .HasColumnName("productid");
@@ -49,9 +55,7 @@ namespace WebServiceApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CustomerId");
-
-                    b.HasIndex("ProductId");
+                    b.HasIndex("OrderId");
 
                     b.ToTable("cart");
                 });
@@ -131,8 +135,6 @@ namespace WebServiceApp.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CartId");
-
                     b.ToTable("orders");
                 });
 
@@ -144,6 +146,9 @@ namespace WebServiceApp.Migrations
                         .HasColumnName("id");
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<int?>("CartId")
+                        .HasColumnType("integer");
 
                     b.Property<string>("Description")
                         .HasMaxLength(500)
@@ -163,52 +168,33 @@ namespace WebServiceApp.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("CartId");
+
                     b.ToTable("products");
                 });
 
             modelBuilder.Entity("WebServiceApp.Entities.Cart", b =>
                 {
-                    b.HasOne("WebServiceApp.Entities.Customer", "Customer")
-                        .WithMany("Carts")
-                        .HasForeignKey("CustomerId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("WebServiceApp.Entities.Product", "Product")
-                        .WithMany("Carts")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Customer");
-
-                    b.Navigation("Product");
-                });
-
-            modelBuilder.Entity("WebServiceApp.Entities.Order", b =>
-                {
-                    b.HasOne("WebServiceApp.Entities.Cart", "Cart")
-                        .WithMany("Orders")
-                        .HasForeignKey("CartId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Cart");
-                });
-
-            modelBuilder.Entity("WebServiceApp.Entities.Cart", b =>
-                {
-                    b.Navigation("Orders");
-                });
-
-            modelBuilder.Entity("WebServiceApp.Entities.Customer", b =>
-                {
-                    b.Navigation("Carts");
+                    b.HasOne("WebServiceApp.Entities.Order", null)
+                        .WithMany("Cart")
+                        .HasForeignKey("OrderId");
                 });
 
             modelBuilder.Entity("WebServiceApp.Entities.Product", b =>
                 {
-                    b.Navigation("Carts");
+                    b.HasOne("WebServiceApp.Entities.Cart", null)
+                        .WithMany("Products")
+                        .HasForeignKey("CartId");
+                });
+
+            modelBuilder.Entity("WebServiceApp.Entities.Cart", b =>
+                {
+                    b.Navigation("Products");
+                });
+
+            modelBuilder.Entity("WebServiceApp.Entities.Order", b =>
+                {
+                    b.Navigation("Cart");
                 });
 #pragma warning restore 612, 618
         }

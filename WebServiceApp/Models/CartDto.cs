@@ -8,5 +8,5 @@ public class CartDto
     public int CustomerId { get; set; }
     public double TotalAmount { get; set; }
     public int Quantity { get; set; }
-    public ICollection<Product> Products { get; set; } = new List<Product>();
+    public int ProductId { get; set; }
 }

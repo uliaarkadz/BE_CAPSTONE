@@ -10,7 +10,7 @@ using WebServiceApp.Services;
 Log.Logger = new LoggerConfiguration()
     .MinimumLevel.Debug()
     .WriteTo.Console()
-    .WriteTo.File("logs/yuliyalogs.txt", rollingInterval: RollingInterval.Day)
+    .WriteTo.File("./logs/yuliyalogs.txt", rollingInterval: RollingInterval.Day)
     .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
@@ -21,7 +21,8 @@ if (environment == Environments.Development)
     builder.Host.UseSerilog(
         (context, loggerConfiguration) => loggerConfiguration
             .MinimumLevel.Debug()
-            .WriteTo.Console());
+            .WriteTo.Console()
+            .WriteTo.File("./logs/yuliyalogs.txt", rollingInterval: RollingInterval.Day));
 }
 else
 {
@@ -30,7 +31,7 @@ else
         (context, loggerConfiguration) => loggerConfiguration
             .MinimumLevel.Debug()
             .WriteTo.Console()
-            .WriteTo.File("logs/cityinfo.txt", rollingInterval: RollingInterval.Day)
+            .WriteTo.File("./logs/yuliyalogs.txt", rollingInterval: RollingInterval.Day)
             .WriteTo.ApplicationInsights(new TelemetryConfiguration
             {
                 InstrumentationKey = builder.Configuration["ApplicationInsightsInstrumentationKey"]
@@ -54,7 +55,6 @@ builder.Services.AddTransient<ILocalMailService, CloudMailService>();
 
 builder.Services.AddDbContext<StoreContext>(
     options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-//builder.Services.AddDbContext<CityInfoContext>(dbContextoptions => dbContextoptions.UseSqlite("Data Sourse=CityInfo.db"));
 builder.Services.AddScoped<IStoreRepository, StoreRepository>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -83,10 +83,9 @@ if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
     app.UseSwaggerUI();
-    //app.ApplyMigrations();
 }
 
-//app.ApplyMigrations();
+
 app.UseHttpsRedirection();
 app.UseRouting();
 //app.UseAuthentication();
