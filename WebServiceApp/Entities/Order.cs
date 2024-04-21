@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace WebServiceApp.Entities;
 
 [Table("orders")]
-public class Order
+public class Order : BaseEntity
 {   
     [Column("id")]
     [Key]

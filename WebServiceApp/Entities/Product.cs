@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 [Table("products")]
-public class Product
+public class Product : BaseEntity
 {
     [Column("id")]
     [Key]

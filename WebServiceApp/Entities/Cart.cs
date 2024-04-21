@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace WebServiceApp.Entities;
 
 [Table("cart")]
-public class Cart
+public class Cart : BaseEntity
 {
     [Column("id")]
     [Key]

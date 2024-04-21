@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace WebServiceApp.Entities;
 
 [Table("customers")]
-public class Customer()
+public class Customer() : BaseEntity
 {
     [Column("id")]
     [Key]

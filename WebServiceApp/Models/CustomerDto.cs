@@ -11,4 +11,6 @@ public class CustomerDto
     public string? City { get; set; }
     public string? State { get; set; }
     public string? Zip { get; set; }
+    public DateTime CreatedDate { get; set; }
+    public DateTime UpdatedDate { get; set; }
 }

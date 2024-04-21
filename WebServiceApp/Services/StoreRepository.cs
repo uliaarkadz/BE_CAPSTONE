@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 using WebServiceApp.DbContext;
 using WebServiceApp.Entities;
 
@@ -50,12 +51,27 @@ public class StoreRepository : IStoreRepository
     
     public async Task<bool>CartExistsAsync(int cartId)
     {
-        return await _context.Product.AnyAsync(c => c.Id == cartId);
+        return await _context.Cart.AnyAsync(c => c.Id == cartId);
     }
     
     public async Task<Cart?> GetCartItemAsync(int cartId)
     {
         return await _context.Cart.Where(c => c.Id == cartId).FirstOrDefaultAsync();
+    }
+    
+    public async Task<List<Order>> GetOrdersAsync(int cartId)
+    {
+        return await _context.Order.Where(c => c.CartId == cartId).ToListAsync();
+    }
+    
+    public async Task<bool>OrderExistsAsync(int orderId)
+    {
+        return await _context.Order.AnyAsync(c => c.Id == orderId);
+    }
+    
+    public async Task<Order?> GetOrderAsync(int orderId)
+    {
+        return await _context.Order.Where(c => c.Id == orderId).FirstOrDefaultAsync();
     }
     
     public void AddProduct(Product product)
@@ -73,6 +89,13 @@ public class StoreRepository : IStoreRepository
         //var cart = await GetCartItemAsync(cartId);
         _context.Add(cart);
     }
+    
+    public void AddOrder(Order order)
+    {
+        //var cart = await GetCartItemAsync(cartId);
+        _context.Add(order);
+    }
+    
     public void DeleteProduct(Product product)
     {
         _context.Remove(product);
@@ -86,6 +109,11 @@ public class StoreRepository : IStoreRepository
     public void DeleteCart(Cart cart)
     {
         _context.Remove(cart);
+    }
+    
+    public void DeleteOrder(Order order)
+    {
+        _context.Remove(order);
     }
     
     public async Task DeleteAllCustomerCart(Cart cart, int customerId)
@@ -102,6 +130,18 @@ public class StoreRepository : IStoreRepository
 
     public async Task<bool> SaveChangesAsync()
     {
+        var entries = _context.ChangeTracker
+            .Entries()
+            .Where(e => e.Entity is BaseEntity && (
+                e.State == EntityState.Added
+                || e.State == EntityState.Modified));
+        foreach (var entityEntry in entries)
+        {
+            if (entityEntry.State == EntityState.Added)
+            {
+                ((BaseEntity)entityEntry.Entity).CreatedDate = DateTime.UtcNow;
+            } else { ((BaseEntity)entityEntry.Entity).UpdatedDate = DateTime.UtcNow;}
+        }
         return (await _context.SaveChangesAsync() >= 0);
     }
     

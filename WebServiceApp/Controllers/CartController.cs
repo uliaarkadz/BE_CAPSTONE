@@ -4,6 +4,7 @@ using WebServiceApp.Models;
 using WebServiceApp.Services;
 
 namespace WebServiceApp.Controllers;
+
 [ApiController]
 [Route("api/cart/{customerId:int}")]
 public class CartController : ControllerBase
@@ -59,5 +60,41 @@ public class CartController : ControllerBase
                 customerId = createdCartReturn.CustomerId,
                 id = createdCartReturn.Id
             }, createdCartReturn.Id);
+    }
+    
+    [HttpPut("{cartId:int}")]
+    public async Task<ActionResult> UpdateCart(int customerId, int cartId,
+        CartUpdate cartUpdate)
+    {
+        var product = await _storeRepository.GetProductAsync(cartUpdate.ProductId);
+        
+        var total = product.Price * cartUpdate.Quantity;
+        
+        cartUpdate.CustomerId = customerId;
+        cartUpdate.TotalAmount = (double)total;
+
+        var cartEntity = await _storeRepository.GetCartItemAsync(cartId);
+        if (cartEntity == null)
+        {
+            return NotFound();
+        }
+        _mapper.Map(cartUpdate, cartEntity);
+        await _storeRepository.SaveChangesAsync();
+
+        return NoContent();
+    }
+    
+    [HttpDelete("{cartId:int}")]
+    public async Task<ActionResult> DeleteCart(int cartId)
+    {
+        var cartEntity = await _storeRepository.GetCartItemAsync(cartId);
+        if (cartEntity == null)
+        {
+            return NotFound();
+        }
+        _storeRepository.DeleteCart(cartEntity);
+        await _storeRepository.SaveChangesAsync();
+        
+        return NoContent();
     }
 }
