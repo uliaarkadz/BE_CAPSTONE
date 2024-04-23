@@ -68,6 +68,7 @@ builder.Services.Configure<ForwardedHeadersOptions>(options =>
 builder.Services.AddMvc(options =>
 {
     options.SuppressAsyncSuffixInActionNames = false;
+    options.EnableEndpointRouting = false;
 });
 
 var app = builder.Build();
@@ -84,6 +85,12 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
+
+builder.Services.AddCors();
+app.UseCors(builder => builder
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());   
 
 
 app.UseHttpsRedirection();
