@@ -4,4 +4,5 @@ public class OrderUpdate
 {
     public int CartID { get; set; }
     public string OrderStatus { get; set; }
+    public string UserId { get; set; }
 }

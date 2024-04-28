@@ -6,7 +6,7 @@ using WebServiceApp.Services;
 namespace WebServiceApp.Controllers;
 
 [ApiController]
-[Route("api/order/{cartId:int}")]
+[Route("api/order/")]
 
 public class OrderController : ControllerBase
 {
@@ -19,15 +19,15 @@ public class OrderController : ControllerBase
         _mapper = mapper;
     }
     
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<OrderDto>>> GetOrders(int cartId)
+    [HttpGet("user/{userId:int}")]
+    public async Task<ActionResult<IEnumerable<OrderDto>>> GetOrders(int userId)
     {
-        var orderEntities = await _storeRepository.GetOrdersAsync(cartId);
+        var orderEntities = await _storeRepository.GetOrdersAsync(userId);
 
         return Ok(_mapper.Map<IEnumerable<OrderDto>>(orderEntities));
     }
     
-    [HttpGet("{id:int}/", Name = "GetOrder")]
+    [HttpGet("{id:int}", Name = "GetOrder")]
     public async Task<IActionResult> GetOrder(int id)
     {
         if (!await _storeRepository.OrderExistsAsync(id))
@@ -39,7 +39,7 @@ public class OrderController : ControllerBase
         return Ok(_mapper.Map<OrderDto>(orderItem));
     }
     
-    [HttpPost]
+    [HttpPost("{cartId:int}")]
     public async Task<ActionResult<OrderDto>> AddOrder(int cartId,
         OrderCreate orderCreate)
     {
@@ -58,10 +58,11 @@ public class OrderController : ControllerBase
             }, createdOrderReturn.Id);
     }
     
-    [HttpPut("{orderId:int}")]
+    [HttpPut("{cartId:int}/{orderId:int}")]
     public async Task<ActionResult> UpdateOrder(int cartId, int orderId,
         OrderUpdate orderUpdate)
     {
+
         orderUpdate.CartID = cartId;
         var orderEntity = await _storeRepository.GetOrderAsync(orderId);
         if (orderEntity == null)

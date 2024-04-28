@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebServiceApp.Models;
 using WebServiceApp.Services;
@@ -7,6 +8,7 @@ using WebServiceApp.Services;
 namespace WebServiceApp.Controllers;
 
 [ApiController]
+//[Authorize(Policy = "admin")]
 [Route("api/products")]
 public class ProductController : ControllerBase
 {

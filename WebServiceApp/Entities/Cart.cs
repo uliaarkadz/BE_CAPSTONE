@@ -28,6 +28,9 @@ public class Cart : BaseEntity
     [Column("quantity")]
     public int Quantity { get; set; }
     
+    [Column("isProccesed")]
+    public bool IsProccesed { get; set; }
+    
     public ICollection<Order> Orders { get; set; }
  
 }

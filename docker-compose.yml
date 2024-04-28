@@ -1,6 +1,26 @@
-﻿services:
+﻿version: '3.4'
+    
+services:
   webserviceapp:
-    image: webserviceapp
     build:
       context: .
       dockerfile: WebServiceApp/Dockerfile
+    #environment:
+      #server: store_db
+      #port: 5432
+      #database: MyStoreDB
+      #dbuser: postgres
+      #password: postgres
+    ports:
+      - "6001:8080"
+  
+  #store_db:
+    #image: postgres:latest
+    #container_name: store_db
+    #environment:
+      #- POSTGRES_DB=MyStoreDB
+      #- POSTGRES_USER=postgres
+      #- POSTGRES_PASSWORD=postgres
+    #ports:
+      #- "5433:5432"
+    #restart: unless-stopped

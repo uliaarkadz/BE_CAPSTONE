@@ -3,6 +3,7 @@ using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Serilog;
 using WebServiceApp.DbContext;
 using WebServiceApp.Services;
@@ -24,7 +25,7 @@ if (environment == Environments.Development)
             .WriteTo.Console()
             .WriteTo.File("./logs/yuliyalogs.txt", rollingInterval: RollingInterval.Day));
 }
-else
+/*else
 {
 
     builder.Host.UseSerilog(
@@ -36,28 +37,48 @@ else
             {
                 InstrumentationKey = builder.Configuration["ApplicationInsightsInstrumentationKey"]
             }, TelemetryConverter.Traces));
-}
+}*/
 
 builder.Services.AddControllers(options =>
 {
     options.ReturnHttpNotAcceptable = true;
 }).AddNewtonsoftJson();
+
 builder.Services.AddProblemDetails();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<FileExtensionContentTypeProvider>();
-#if DEBUG
 
-#else
-builder.Services.AddTransient<ILocalMailService, CloudMailService>();
-#endif
+var server = builder.Configuration["server"] ?? "localhost";
+var database = builder.Configuration["databse"] ?? "MyStoreDB";
+var port = builder.Configuration["port"] ?? "5433";
+var pass = builder.Configuration["password"] ?? "postgres";
+var user = builder.Configuration["dbuser"] ?? "postgres";
+var connectionString =
+    $"User ID={user};Password={pass};Server={server};Port={port};Database={database};Pooling=true;";
+//builder.Services.AddDbContext<StoreContext>(
+   // options => options.UseNpgsql(connectionString));
 
 builder.Services.AddDbContext<StoreContext>(
     options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+
 builder.Services.AddScoped<IStoreRepository, StoreRepository>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+builder.Services.AddAuthentication("Bearer").AddJwtBearer(options =>
+{
+    options.TokenValidationParameters = new()
+    {
+        ValidateIssuer = true,
+        ValidateAudience = true,
+        ValidateIssuerSigningKey = true,
+        ValidIssuer = builder.Configuration["Authentification:Issuer"],
+        ValidAudience = builder.Configuration["Authentification:Audience"],
+        IssuerSigningKey =
+            new SymmetricSecurityKey(Convert.FromBase64String(builder.Configuration["Authentification:SecretForKey"]))
+    };
+});
 
 builder.Services.Configure<ForwardedHeadersOptions>(options =>
 {
@@ -70,8 +91,18 @@ builder.Services.AddMvc(options =>
     options.SuppressAsyncSuffixInActionNames = false;
     options.EnableEndpointRouting = false;
 });
+builder.Services.AddCors();
+
+builder.Services.AddAuthorization(options => options.AddPolicy(("admin"), policy =>
+{
+    policy.RequireAuthenticatedUser();
+    policy.RequireClaim("user_role", "admin");
+}));
 
 var app = builder.Build();
+
+//DataBaseManagementService.MigrationInitialisation(app);
+
 if (!app.Environment.IsDevelopment())
 {
     app.UseExceptionHandler();
@@ -86,7 +117,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-builder.Services.AddCors();
+
 app.UseCors(builder => builder
     .AllowAnyOrigin()
     .AllowAnyMethod()
@@ -95,8 +126,7 @@ app.UseCors(builder => builder
 
 app.UseHttpsRedirection();
 app.UseRouting();
-//app.UseAuthentication();
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>

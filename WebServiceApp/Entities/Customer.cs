@@ -47,5 +47,7 @@ public class Customer() : BaseEntity
     public string? Zip { get; set; }
 
     public ICollection<Cart> Carts { get; set; }
+    
+    public ICollection<User> Users { get; set; }
 
 }

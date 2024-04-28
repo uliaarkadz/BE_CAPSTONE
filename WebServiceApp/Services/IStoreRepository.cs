@@ -9,7 +9,7 @@ public interface IStoreRepository
     Task<IEnumerable<Product>> GetProductsAsync();
     Task<List<Customer>> GetCustomersAsync();
     Task<List<Cart>> GetCartItemsAsync(int customerId);
-    Task<List<Order>> GetOrdersAsync(int cartId);
+    Task<List<Order>> GetOrdersAsync(int userId);
     Task<bool> ProductExistsAsync(int productId);
     Task<bool> CustomerExistsAsync(int customerId);
     Task<bool> CartExistsAsync(int productId);

@@ -59,9 +59,9 @@ public class StoreRepository : IStoreRepository
         return await _context.Cart.Where(c => c.Id == cartId).FirstOrDefaultAsync();
     }
     
-    public async Task<List<Order>> GetOrdersAsync(int cartId)
+    public async Task<List<Order>> GetOrdersAsync(int userid)
     {
-        return await _context.Order.Where(c => c.CartId == cartId).ToListAsync();
+        return await _context.Order.Where(c => c.UserId == userid).ToListAsync();
     }
     
     public async Task<bool>OrderExistsAsync(int orderId)

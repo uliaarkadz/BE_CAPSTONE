@@ -17,6 +17,11 @@ public class Order : BaseEntity
     public int CartId { get; set; }
     public Cart Cart { get; set; }
     
+    [Column("userid")]
+    [Required]
+    public int UserId { get; set; }
+
+    
     [Column("orderstatus")]
     public string OrderStatus { get; set; }
     

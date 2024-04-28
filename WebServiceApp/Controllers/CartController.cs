@@ -1,4 +1,5 @@
 using AutoMapper;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
 using WebServiceApp.Models;
 using WebServiceApp.Services;
@@ -79,6 +80,44 @@ public class CartController : ControllerBase
             return NotFound();
         }
         _mapper.Map(cartUpdate, cartEntity);
+        await _storeRepository.SaveChangesAsync();
+
+        return NoContent();
+    }
+    
+    [HttpPatch("{cartId:int}")]
+    public async Task <ActionResult> PartiallyUpdateCart(int customerId, int cartId,
+        JsonPatchDocument<CartUpdate> patchDocument)
+    {
+        
+        if (!await _storeRepository.CartExistsAsync(cartId))
+        {
+            return NotFound();
+        }
+
+        var cartEntity = await _storeRepository.GetCartItemAsync(cartId);
+
+        if (cartEntity == null)
+        {
+            return NotFound();
+        }
+
+        var cartToPatch = _mapper.Map<CartUpdate>(cartEntity);
+
+        patchDocument.ApplyTo(cartToPatch, ModelState);
+
+        if (!ModelState.IsValid)
+        {
+            return BadRequest(ModelState);
+        }
+
+        if (!TryValidateModel(cartToPatch))
+        {
+            return BadRequest(ModelState);
+        }
+
+        _mapper.Map(cartToPatch, cartEntity);
+
         await _storeRepository.SaveChangesAsync();
 
         return NoContent();

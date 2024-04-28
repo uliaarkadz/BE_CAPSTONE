@@ -39,6 +39,10 @@ namespace WebServiceApp.Migrations
                         .HasColumnType("integer")
                         .HasColumnName("customerId");
 
+                    b.Property<bool>("IsProccesed")
+                        .HasColumnType("boolean")
+                        .HasColumnName("isProccesed");
+
                     b.Property<int>("ProductId")
                         .HasColumnType("integer")
                         .HasColumnName("productid");
@@ -153,6 +157,10 @@ namespace WebServiceApp.Migrations
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("updateddate");
 
+                    b.Property<int>("UserId")
+                        .HasColumnType("integer")
+                        .HasColumnName("userid");
+
                     b.HasKey("Id");
 
                     b.HasIndex("CartId");
@@ -178,6 +186,16 @@ namespace WebServiceApp.Migrations
                         .HasColumnType("character varying(500)")
                         .HasColumnName("description");
 
+                    b.Property<string>("Image")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)")
+                        .HasColumnName("image");
+
+                    b.Property<string>("Inventory")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)")
+                        .HasColumnName("inventory");
+
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(50)
@@ -189,6 +207,11 @@ namespace WebServiceApp.Migrations
                         .HasColumnType("double precision")
                         .HasColumnName("price");
 
+                    b.Property<string>("Serial")
+                        .HasMaxLength(500)
+                        .HasColumnType("character varying(500)")
+                        .HasColumnName("serial");
+
                     b.Property<DateTime?>("UpdatedDate")
                         .HasColumnType("timestamp with time zone")
                         .HasColumnName("updateddate");
@@ -196,6 +219,42 @@ namespace WebServiceApp.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("products");
+                });
+
+            modelBuilder.Entity("WebServiceApp.Entities.User", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer")
+                        .HasColumnName("id");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime?>("CreatedDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("createddate");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("integer")
+                        .HasColumnName("customerid");
+
+                    b.Property<int>("Password")
+                        .HasColumnType("integer")
+                        .HasColumnName("password");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("timestamp with time zone")
+                        .HasColumnName("updateddate");
+
+                    b.Property<int>("UserName")
+                        .HasColumnType("integer")
+                        .HasColumnName("username");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CustomerId");
+
+                    b.ToTable("users");
                 });
 
             modelBuilder.Entity("WebServiceApp.Entities.Cart", b =>
@@ -228,6 +287,17 @@ namespace WebServiceApp.Migrations
                     b.Navigation("Cart");
                 });
 
+            modelBuilder.Entity("WebServiceApp.Entities.User", b =>
+                {
+                    b.HasOne("WebServiceApp.Entities.Customer", "Customer")
+                        .WithMany("Users")
+                        .HasForeignKey("CustomerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Customer");
+                });
+
             modelBuilder.Entity("WebServiceApp.Entities.Cart", b =>
                 {
                     b.Navigation("Orders");
@@ -236,6 +306,8 @@ namespace WebServiceApp.Migrations
             modelBuilder.Entity("WebServiceApp.Entities.Customer", b =>
                 {
                     b.Navigation("Carts");
+
+                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("WebServiceApp.Entities.Product", b =>

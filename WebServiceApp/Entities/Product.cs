@@ -23,6 +23,18 @@ public class Product : BaseEntity
     [MaxLength(500)]
     public double? Price { get; set; }
     
+    [Column("image")]
+    [MaxLength(500)]
+    public string?  Image { get; set; }
+    
+    [Column("serial")]
+    [MaxLength(500)]
+    public string?  Serial { get; set; }
+    
+    [Column("inventory")]
+    [MaxLength(500)]
+    public string?  Inventory { get; set; }
+    
     public ICollection<Cart> Carts { get; set; }
     public Product(string name)
     {
