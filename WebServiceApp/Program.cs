@@ -27,7 +27,7 @@ if (environment == Environments.Development)
             .WriteTo.Console()
             .WriteTo.File("./logs/yuliyalogs.txt", rollingInterval: RollingInterval.Day));
 }
-else
+/*else
 {
 
     builder.Host.UseSerilog(
@@ -39,7 +39,7 @@ else
             {
                 InstrumentationKey = builder.Configuration["ApplicationInsightsInstrumentationKey"]
             }, TelemetryConverter.Traces));
-}
+}*/
 
 builder.Services.AddControllers(options =>
 {
