@@ -498,3 +498,173 @@ ORDER BY p.name
 2024-04-29 00:34:20.066 -04:00 [DBG] Connection id "0HN380M8EU9RF" stopped.
 2024-04-29 00:34:20.066 -04:00 [DBG] Connection id "0HN380M8EU9RF" sending FIN because: "The Socket transport's send loop completed gracefully."
 2024-04-29 00:34:20.070 -04:00 [DBG] Hosting stopped
+2024-04-29 01:09:33.993 -04:00 [DBG] Initializing Razor view compiler with no compiled views.
+2024-04-29 01:09:34.025 -04:00 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2024-04-29 01:09:34.033 -04:00 [INF] User profile is available. Using '/Users/ulia/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2024-04-29 01:09:34.045 -04:00 [DBG] Hosting starting
+2024-04-29 01:09:34.048 -04:00 [DBG] Reading data from file '/Users/ulia/.aspnet/DataProtection-Keys/key-94a5b716-f00f-43b5-ac2c-325118abc25a.xml'.
+2024-04-29 01:09:34.050 -04:00 [DBG] Found key {94a5b716-f00f-43b5-ac2c-325118abc25a}.
+2024-04-29 01:09:34.053 -04:00 [DBG] Considering key {94a5b716-f00f-43b5-ac2c-325118abc25a} with expiration date 2024-07-17 02:44:31Z as default key.
+2024-04-29 01:09:34.053 -04:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2024-04-29 01:09:34.054 -04:00 [DBG] Using managed symmetric algorithm 'System.Security.Cryptography.Aes'.
+2024-04-29 01:09:34.055 -04:00 [DBG] Using managed keyed hash algorithm 'System.Security.Cryptography.HMACSHA256'.
+2024-04-29 01:09:34.056 -04:00 [DBG] Using key {94a5b716-f00f-43b5-ac2c-325118abc25a} as the default key.
+2024-04-29 01:09:34.056 -04:00 [DBG] Key ring with default key {94a5b716-f00f-43b5-ac2c-325118abc25a} was loaded during application startup.
+2024-04-29 01:09:34.071 -04:00 [INF] Now listening on: http://localhost:5102
+2024-04-29 01:09:34.072 -04:00 [DBG] Loaded hosting startup assembly WebServiceApp
+2024-04-29 01:09:34.072 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-04-29 01:09:34.072 -04:00 [INF] Hosting environment: Development
+2024-04-29 01:09:34.072 -04:00 [INF] Content root path: /Users/ulia/development/seir_seal/projects/CAPSTONE/BECapstone/WebServiceApp
+2024-04-29 01:09:34.072 -04:00 [DBG] Hosting started
+2024-04-29 01:09:34.227 -04:00 [DBG] Connection id "0HN381A7K6B6D" received FIN.
+2024-04-29 01:09:34.229 -04:00 [DBG] Connection id "0HN381A7K6B6D" accepted.
+2024-04-29 01:09:34.230 -04:00 [DBG] Connection id "0HN381A7K6B6D" started.
+2024-04-29 01:09:34.232 -04:00 [DBG] Connection id "0HN381A7K6B6D" sending FIN because: "The Socket transport's send loop completed gracefully."
+2024-04-29 01:09:34.235 -04:00 [DBG] Connection id "0HN381A7K6B6D" disconnecting.
+2024-04-29 01:09:34.237 -04:00 [DBG] Connection id "0HN381A7K6B6D" stopped.
+2024-04-29 01:09:34.292 -04:00 [DBG] Connection id "0HN381A7K6B6E" accepted.
+2024-04-29 01:09:34.292 -04:00 [DBG] Connection id "0HN381A7K6B6E" started.
+2024-04-29 01:09:34.292 -04:00 [DBG] Connection id "0HN381A7K6B6F" accepted.
+2024-04-29 01:09:34.292 -04:00 [DBG] Connection id "0HN381A7K6B6F" started.
+2024-04-29 01:09:34.300 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5102/ - null null
+2024-04-29 01:09:34.301 -04:00 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2024-04-29 01:09:34.316 -04:00 [DBG] The request path  does not match the path filter
+2024-04-29 01:09:34.316 -04:00 [WRN] Failed to determine the https port for redirect.
+2024-04-29 01:09:34.326 -04:00 [DBG] No candidates found for the request path '/'
+2024-04-29 01:09:34.326 -04:00 [DBG] Request did not match any endpoints
+2024-04-29 01:09:34.356 -04:00 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2024-04-29 01:09:34.358 -04:00 [DBG] Connection id "0HN381A7K6B6E" completed keep alive response.
+2024-04-29 01:09:34.358 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5102/ - 404 0 null 59.3983ms
+2024-04-29 01:09:34.359 -04:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5102/, Response status code: 404
+2024-04-29 01:09:36.126 -04:00 [DBG] Connection id "0HN381A7K6B6E" received FIN.
+2024-04-29 01:09:36.126 -04:00 [DBG] Connection id "0HN381A7K6B6F" received FIN.
+2024-04-29 01:09:36.128 -04:00 [DBG] Connection id "0HN381A7K6B6E" sending FIN because: "The Socket transport's send loop completed gracefully."
+2024-04-29 01:09:36.132 -04:00 [DBG] Connection id "0HN381A7K6B6E" disconnecting.
+2024-04-29 01:09:36.133 -04:00 [DBG] Connection id "0HN381A7K6B6F" disconnecting.
+2024-04-29 01:09:36.134 -04:00 [DBG] Connection id "0HN381A7K6B6F" sending FIN because: "The Socket transport's send loop completed gracefully."
+2024-04-29 01:09:36.135 -04:00 [DBG] Connection id "0HN381A7K6B6F" stopped.
+2024-04-29 01:09:36.135 -04:00 [DBG] Connection id "0HN381A7K6B6E" stopped.
+2024-04-29 01:09:39.585 -04:00 [DBG] Connection id "0HN381A7K6B6G" received FIN.
+2024-04-29 01:09:39.585 -04:00 [DBG] Connection id "0HN381A7K6B6G" accepted.
+2024-04-29 01:09:39.585 -04:00 [DBG] Connection id "0HN381A7K6B6G" started.
+2024-04-29 01:09:39.585 -04:00 [DBG] Connection id "0HN381A7K6B6H" accepted.
+2024-04-29 01:09:39.586 -04:00 [DBG] Connection id "0HN381A7K6B6G" sending FIN because: "The Socket transport's send loop completed gracefully."
+2024-04-29 01:09:39.586 -04:00 [DBG] Connection id "0HN381A7K6B6H" started.
+2024-04-29 01:09:39.586 -04:00 [DBG] Connection id "0HN381A7K6B6G" disconnecting.
+2024-04-29 01:09:39.586 -04:00 [DBG] Connection id "0HN381A7K6B6G" stopped.
+2024-04-29 01:09:39.587 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5102/api/products - null null
+2024-04-29 01:09:39.589 -04:00 [DBG] The request path  does not match the path filter
+2024-04-29 01:09:39.595 -04:00 [DBG] 1 candidate(s) found for the request path '/api/products'
+2024-04-29 01:09:39.597 -04:00 [DBG] Endpoint 'WebServiceApp.Controllers.ProductController.GetProducts (WebServiceApp)' with route pattern 'api/products' is valid for the request path '/api/products'
+2024-04-29 01:09:39.598 -04:00 [DBG] Request matched endpoint 'WebServiceApp.Controllers.ProductController.GetProducts (WebServiceApp)'
+2024-04-29 01:09:39.600 -04:00 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2024-04-29 01:09:39.600 -04:00 [INF] Executing endpoint 'WebServiceApp.Controllers.ProductController.GetProducts (WebServiceApp)'
+2024-04-29 01:09:39.616 -04:00 [INF] Route matched with {action = "GetProducts", controller = "Product"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[WebServiceApp.Models.ProductDto]]] GetProducts() on controller WebServiceApp.Controllers.ProductController (WebServiceApp).
+2024-04-29 01:09:39.617 -04:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2024-04-29 01:09:39.617 -04:00 [DBG] Execution plan of resource filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2024-04-29 01:09:39.617 -04:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2024-04-29 01:09:39.617 -04:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2024-04-29 01:09:39.617 -04:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter","Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2024-04-29 01:09:39.619 -04:00 [DBG] Executing controller factory for controller WebServiceApp.Controllers.ProductController (WebServiceApp)
+2024-04-29 01:09:39.687 -04:00 [DBG] An 'IServiceProvider' was created for internal use by Entity Framework.
+2024-04-29 01:09:39.755 -04:00 [DBG] Executed controller factory for controller WebServiceApp.Controllers.ProductController (WebServiceApp)
+2024-04-29 01:09:39.757 -04:00 [INF] Executing action method WebServiceApp.Controllers.ProductController.GetProducts (WebServiceApp) - Validation state: "Valid"
+2024-04-29 01:09:40.186 -04:00 [DBG] Entity Framework Core 8.0.4 initialized 'StoreContext' using provider 'Npgsql.EntityFrameworkCore.PostgreSQL:8.0.2+5a671b9769f2d00a75b0ba42ce30c444a12407e3' with options: None
+2024-04-29 01:09:40.203 -04:00 [DBG] Compiling query expression: 
+'DbSet<Product>()
+    .OrderBy(c => c.Name)'
+2024-04-29 01:09:40.304 -04:00 [DBG] Generated query execution expression: 
+'queryContext => new SingleQueryingEnumerable<Product>(
+    (RelationalQueryContext)queryContext, 
+    RelationalCommandCache.QueryExpression(
+        Projection Mapping:
+            EmptyProjectionMember -> Dictionary<IProperty, int> { [Property: Product.Id (int) Required PK AfterSave:Throw ValueGenerated.OnAdd, 0], [Property: Product.CreatedDate (DateTime?), 1], [Property: Product.Description (string) MaxLength(500), 2], [Property: Product.Image (string) MaxLength(500), 3], [Property: Product.Inventory (string) MaxLength(500), 4], [Property: Product.Name (string) Required MaxLength(50), 5], [Property: Product.Price (double?) MaxLength(500), 6], [Property: Product.Serial (string) MaxLength(500), 7], [Property: Product.UpdatedDate (DateTime?), 8] }
+        SELECT p.id, p.createddate, p.description, p.image, p.inventory, p.name, p.price, p.serial, p.updateddate
+        FROM products AS p
+        ORDER BY p.name ASC), 
+    null, 
+    Func<QueryContext, DbDataReader, ResultContext, SingleQueryResultCoordinator, Product>, 
+    WebServiceApp.DbContext.StoreContext, 
+    False, 
+    False, 
+    True
+)'
+2024-04-29 01:09:40.320 -04:00 [DBG] Creating DbConnection.
+2024-04-29 01:09:40.342 -04:00 [DBG] Created DbConnection. (21ms).
+2024-04-29 01:09:40.344 -04:00 [DBG] Opening connection to database 'mystorerdb' on server 'tcp://dpg-cona2akf7o1s73fggol0-a.oregon-postgres.render.com:5432'.
+2024-04-29 01:09:41.298 -04:00 [DBG] Opened connection to database 'mystorerdb' on server 'tcp://dpg-cona2akf7o1s73fggol0-a.oregon-postgres.render.com:5432'.
+2024-04-29 01:09:41.304 -04:00 [DBG] Creating DbCommand for 'ExecuteReader'.
+2024-04-29 01:09:41.309 -04:00 [DBG] Created DbCommand for 'ExecuteReader' (2ms).
+2024-04-29 01:09:41.310 -04:00 [DBG] Initialized DbCommand for 'ExecuteReader' (6ms).
+2024-04-29 01:09:41.316 -04:00 [DBG] Executing DbCommand [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.createddate, p.description, p.image, p.inventory, p.name, p.price, p.serial, p.updateddate
+FROM products AS p
+ORDER BY p.name
+2024-04-29 01:09:41.437 -04:00 [INF] Executed DbCommand (123ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT p.id, p.createddate, p.description, p.image, p.inventory, p.name, p.price, p.serial, p.updateddate
+FROM products AS p
+ORDER BY p.name
+2024-04-29 01:09:41.492 -04:00 [DBG] Context 'StoreContext' started tracking 'Product' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-04-29 01:09:41.506 -04:00 [DBG] Context 'StoreContext' started tracking 'Product' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-04-29 01:09:41.506 -04:00 [DBG] Context 'StoreContext' started tracking 'Product' entity. Consider using 'DbContextOptionsBuilder.EnableSensitiveDataLogging' to see key values.
+2024-04-29 01:09:41.508 -04:00 [DBG] Closing data reader to 'mystorerdb' on server 'tcp://dpg-cona2akf7o1s73fggol0-a.oregon-postgres.render.com:5432'.
+2024-04-29 01:09:41.513 -04:00 [DBG] A data reader for 'mystorerdb' on server 'tcp://dpg-cona2akf7o1s73fggol0-a.oregon-postgres.render.com:5432' is being disposed after spending 72ms reading results.
+2024-04-29 01:09:41.516 -04:00 [DBG] Closing connection to database 'mystorerdb' on server 'tcp://dpg-cona2akf7o1s73fggol0-a.oregon-postgres.render.com:5432'.
+2024-04-29 01:09:41.519 -04:00 [DBG] Closed connection to database 'mystorerdb' on server 'tcp://dpg-cona2akf7o1s73fggol0-a.oregon-postgres.render.com:5432' (2ms).
+2024-04-29 01:09:41.531 -04:00 [INF] Executed action method WebServiceApp.Controllers.ProductController.GetProducts (WebServiceApp), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 1771.6722ms.
+2024-04-29 01:09:41.533 -04:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.NewtonsoftJsonOutputFormatter"]
+2024-04-29 01:09:41.534 -04:00 [DBG] No information found on request to perform content negotiation.
+2024-04-29 01:09:41.534 -04:00 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2024-04-29 01:09:41.535 -04:00 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2024-04-29 01:09:41.535 -04:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.NewtonsoftJsonOutputFormatter' and content type 'application/json' to write the response.
+2024-04-29 01:09:41.535 -04:00 [INF] Executing OkObjectResult, writing value of type 'System.Collections.Generic.List`1[[WebServiceApp.Models.ProductDto, WebServiceApp, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2024-04-29 01:09:41.605 -04:00 [INF] Executed action WebServiceApp.Controllers.ProductController.GetProducts (WebServiceApp) in 1985.8095ms
+2024-04-29 01:09:41.606 -04:00 [INF] Executed endpoint 'WebServiceApp.Controllers.ProductController.GetProducts (WebServiceApp)'
+2024-04-29 01:09:41.609 -04:00 [DBG] Connection id "0HN381A7K6B6H" completed keep alive response.
+2024-04-29 01:09:41.610 -04:00 [DBG] 'StoreContext' disposed.
+2024-04-29 01:09:41.613 -04:00 [DBG] Disposing connection to database 'mystorerdb' on server 'tcp://dpg-cona2akf7o1s73fggol0-a.oregon-postgres.render.com:5432'.
+2024-04-29 01:09:41.615 -04:00 [DBG] Disposed connection to database 'mystorerdb' on server 'tcp://dpg-cona2akf7o1s73fggol0-a.oregon-postgres.render.com:5432' (1ms).
+2024-04-29 01:09:41.615 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5102/api/products - 200 1002 application/json; charset=utf-8 2029.0306ms
+2024-04-29 01:09:47.468 -04:00 [INF] Request starting HTTP/1.1 POST http://localhost:5102/api/authentication/authenticate - application/json 56
+2024-04-29 01:09:47.470 -04:00 [DBG] POST requests are not supported
+2024-04-29 01:09:47.471 -04:00 [DBG] 1 candidate(s) found for the request path '/api/authentication/authenticate'
+2024-04-29 01:09:47.472 -04:00 [DBG] Endpoint 'WebServiceApp.Controllers.AuthentificationController.Authenticate (WebServiceApp)' with route pattern 'api/authentication/authenticate' is valid for the request path '/api/authentication/authenticate'
+2024-04-29 01:09:47.472 -04:00 [DBG] Request matched endpoint 'WebServiceApp.Controllers.AuthentificationController.Authenticate (WebServiceApp)'
+2024-04-29 01:09:47.475 -04:00 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2024-04-29 01:09:47.475 -04:00 [INF] Executing endpoint 'WebServiceApp.Controllers.AuthentificationController.Authenticate (WebServiceApp)'
+2024-04-29 01:09:47.488 -04:00 [INF] Route matched with {action = "Authenticate", controller = "Authentification"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.ActionResult`1[System.String] Authenticate(AuthenticationRequestBody) on controller WebServiceApp.Controllers.AuthentificationController (WebServiceApp).
+2024-04-29 01:09:47.488 -04:00 [DBG] Execution plan of authorization filters (in the following order): ["None"]
+2024-04-29 01:09:47.488 -04:00 [DBG] Execution plan of resource filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter"]
+2024-04-29 01:09:47.489 -04:00 [DBG] Execution plan of action filters (in the following order): ["Microsoft.AspNetCore.Mvc.ModelBinding.UnsupportedContentTypeFilter (Order: -3000)","Microsoft.AspNetCore.Mvc.Infrastructure.ModelStateInvalidFilter (Order: -2000)"]
+2024-04-29 01:09:47.489 -04:00 [DBG] Execution plan of exception filters (in the following order): ["None"]
+2024-04-29 01:09:47.489 -04:00 [DBG] Execution plan of result filters (in the following order): ["Microsoft.AspNetCore.Mvc.ViewFeatures.Filters.SaveTempDataFilter","Microsoft.AspNetCore.Mvc.Infrastructure.ClientErrorResultFilter (Order: -2000)"]
+2024-04-29 01:09:47.489 -04:00 [DBG] Executing controller factory for controller WebServiceApp.Controllers.AuthentificationController (WebServiceApp)
+2024-04-29 01:09:47.490 -04:00 [DBG] Executed controller factory for controller WebServiceApp.Controllers.AuthentificationController (WebServiceApp)
+2024-04-29 01:09:47.493 -04:00 [DBG] Attempting to bind parameter 'authenticationRequestBody' of type 'WebServiceApp.Controllers.AuthentificationController+AuthenticationRequestBody' ...
+2024-04-29 01:09:47.495 -04:00 [DBG] Attempting to bind parameter 'authenticationRequestBody' of type 'WebServiceApp.Controllers.AuthentificationController+AuthenticationRequestBody' using the name '' in request data ...
+2024-04-29 01:09:47.495 -04:00 [DBG] Rejected input formatter 'Microsoft.AspNetCore.Mvc.Formatters.NewtonsoftJsonPatchInputFormatter' for content type 'application/json'.
+2024-04-29 01:09:47.495 -04:00 [DBG] Selected input formatter 'Microsoft.AspNetCore.Mvc.Formatters.NewtonsoftJsonInputFormatter' for content type 'application/json'.
+2024-04-29 01:09:47.501 -04:00 [DBG] Connection id "0HN381A7K6B6H", Request id "0HN381A7K6B6H:00000002": started reading request body.
+2024-04-29 01:09:47.501 -04:00 [DBG] Connection id "0HN381A7K6B6H", Request id "0HN381A7K6B6H:00000002": done reading request body.
+2024-04-29 01:09:47.518 -04:00 [DBG] Done attempting to bind parameter 'authenticationRequestBody' of type 'WebServiceApp.Controllers.AuthentificationController+AuthenticationRequestBody'.
+2024-04-29 01:09:47.518 -04:00 [DBG] Done attempting to bind parameter 'authenticationRequestBody' of type 'WebServiceApp.Controllers.AuthentificationController+AuthenticationRequestBody'.
+2024-04-29 01:09:47.518 -04:00 [DBG] Attempting to validate the bound parameter 'authenticationRequestBody' of type 'WebServiceApp.Controllers.AuthentificationController+AuthenticationRequestBody' ...
+2024-04-29 01:09:47.520 -04:00 [DBG] Done attempting to validate the bound parameter 'authenticationRequestBody' of type 'WebServiceApp.Controllers.AuthentificationController+AuthenticationRequestBody'.
+2024-04-29 01:09:47.521 -04:00 [INF] Executing action method WebServiceApp.Controllers.AuthentificationController.Authenticate (WebServiceApp) - Validation state: "Valid"
+2024-04-29 01:09:47.532 -04:00 [INF] Executed action method WebServiceApp.Controllers.AuthentificationController.Authenticate (WebServiceApp), returned result Microsoft.AspNetCore.Mvc.OkObjectResult in 11.5457ms.
+2024-04-29 01:09:47.533 -04:00 [DBG] List of registered output formatters, in the following order: ["Microsoft.AspNetCore.Mvc.Formatters.HttpNoContentOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.StreamOutputFormatter","Microsoft.AspNetCore.Mvc.Formatters.NewtonsoftJsonOutputFormatter"]
+2024-04-29 01:09:47.533 -04:00 [DBG] No information found on request to perform content negotiation.
+2024-04-29 01:09:47.533 -04:00 [DBG] Attempting to select an output formatter without using a content type as no explicit content types were specified for the response.
+2024-04-29 01:09:47.533 -04:00 [DBG] Attempting to select the first formatter in the output formatters list which can write the result.
+2024-04-29 01:09:47.533 -04:00 [DBG] Selected output formatter 'Microsoft.AspNetCore.Mvc.Formatters.StringOutputFormatter' and content type 'text/plain' to write the response.
+2024-04-29 01:09:47.533 -04:00 [INF] Executing OkObjectResult, writing value of type 'System.String'.
+2024-04-29 01:09:47.533 -04:00 [INF] Executed action WebServiceApp.Controllers.AuthentificationController.Authenticate (WebServiceApp) in 44.0244ms
+2024-04-29 01:09:47.533 -04:00 [INF] Executed endpoint 'WebServiceApp.Controllers.AuthentificationController.Authenticate (WebServiceApp)'
+2024-04-29 01:09:47.533 -04:00 [DBG] Connection id "0HN381A7K6B6H" completed keep alive response.
+2024-04-29 01:09:47.533 -04:00 [INF] Request finished HTTP/1.1 POST http://localhost:5102/api/authentication/authenticate - 200 null text/plain; charset=utf-8 65.1543ms
+2024-04-29 01:09:53.708 -04:00 [INF] Application is shutting down...
+2024-04-29 01:09:53.709 -04:00 [DBG] Hosting stopping
+2024-04-29 01:09:53.713 -04:00 [DBG] Connection id "0HN381A7K6B6H" disconnecting.
+2024-04-29 01:09:53.713 -04:00 [DBG] Connection id "0HN381A7K6B6H" stopped.
+2024-04-29 01:09:53.713 -04:00 [DBG] Connection id "0HN381A7K6B6H" sending FIN because: "The Socket transport's send loop completed gracefully."
+2024-04-29 01:09:53.715 -04:00 [DBG] Hosting stopped

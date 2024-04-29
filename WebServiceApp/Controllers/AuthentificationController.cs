@@ -9,10 +9,6 @@ namespace WebServiceApp.Controllers;
 [ApiController]
 public class AuthentificationController : ControllerBase
 {
-    /*private string _secretForKey = string.Empty;
-    private string _issuer = string.Empty;
-    private string _audience = string.Empty;*/
-
     public class AuthenticationRequestBody
     {
         public string? UserName { get; set; }
