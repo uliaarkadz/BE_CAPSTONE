@@ -1,4 +1,5 @@
 
+using System.Reflection;
 using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.StaticFiles;
@@ -16,7 +17,12 @@ Log.Logger = new LoggerConfiguration()
 
 var builder = WebApplication.CreateBuilder(args);
 
+
+builder.Configuration.AddJsonFile("appsettings.json", false, true);
 var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
+builder.Configuration.AddJsonFile($"appsettings.{environment}.json", true, true);
+builder.Configuration.AddUserSecrets(Assembly.GetExecutingAssembly(),true);
+
 if (environment == Environments.Development)
 {
     builder.Host.UseSerilog(
@@ -62,7 +68,7 @@ var connectionString =
 
 builder.Services.AddDbContext<StoreContext>(
     options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-
+var test = builder.Configuration["Authentication:SecretForKey"];
 builder.Services.AddScoped<IStoreRepository, StoreRepository>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -76,7 +82,7 @@ builder.Services.AddAuthentication("Bearer").AddJwtBearer(options =>
         ValidIssuer = builder.Configuration["Authentification:Issuer"],
         ValidAudience = builder.Configuration["Authentification:Audience"],
         IssuerSigningKey =
-            new SymmetricSecurityKey(Convert.FromBase64String(builder.Configuration["Authentification:SecretForKey"]))
+            new SymmetricSecurityKey(Convert.FromBase64String(builder.Configuration["Authentication:SecretForKey"]))
     };
 });
 

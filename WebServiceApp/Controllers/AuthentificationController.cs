@@ -9,10 +9,10 @@ namespace WebServiceApp.Controllers;
 [ApiController]
 public class AuthentificationController : ControllerBase
 {
-    private string _secretForKey = string.Empty;
+    /*private string _secretForKey = string.Empty;
     private string _issuer = string.Empty;
-    private string _audience = string.Empty;
-    private readonly IConfiguration _configuration;
+    private string _audience = string.Empty;*/
+
     public class AuthenticationRequestBody
     {
         public string? UserName { get; set; }
@@ -34,17 +34,20 @@ public class AuthentificationController : ControllerBase
             UserRole = userRole;
         }
     }
-    
-    public AuthentificationController(IConfiguration configuration)
+    private readonly IConfiguration _config;
+    public AuthentificationController(IConfiguration config)
     {
-    _secretForKey = configuration["Authentication:SecretForKey"];
-     _issuer = configuration["Authentication:Issuer"];
-    _audience = configuration["Authentication:Audience"];
+        _config = config;
+
     }
+    
 
     [HttpPost("authenticate")]
     public ActionResult<string> Authenticate(AuthenticationRequestBody authenticationRequestBody)
     {
+        var _secretForKey = _config["Authentication:SecretForKey"];
+        var _issuer = _config["Authentication:Issuer"];
+        var _audience = _config["Authentication:Audience"];
         var user = ValidateUserCredentials(authenticationRequestBody.UserName, authenticationRequestBody.Password);
         if (user == null)
         {
