@@ -1,5 +1,3 @@
-
-using System.Reflection;
 using Microsoft.ApplicationInsights.Extensibility;
 using Microsoft.AspNetCore.HttpOverrides;
 using Microsoft.AspNetCore.StaticFiles;
@@ -18,10 +16,8 @@ Log.Logger = new LoggerConfiguration()
 var builder = WebApplication.CreateBuilder(args);
 
 
-builder.Configuration.AddJsonFile("appsettings.json", false, true);
+
 var environment = Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT");
-builder.Configuration.AddJsonFile($"appsettings.{environment}.json", true, true);
-builder.Configuration.AddUserSecrets(Assembly.GetExecutingAssembly(),true);
 
 if (environment == Environments.Development)
 {
@@ -31,7 +27,7 @@ if (environment == Environments.Development)
             .WriteTo.Console()
             .WriteTo.File("./logs/yuliyalogs.txt", rollingInterval: RollingInterval.Day));
 }
-/*else
+else
 {
 
     builder.Host.UseSerilog(
@@ -43,7 +39,7 @@ if (environment == Environments.Development)
             {
                 InstrumentationKey = builder.Configuration["ApplicationInsightsInstrumentationKey"]
             }, TelemetryConverter.Traces));
-}*/
+}
 
 builder.Services.AddControllers(options =>
 {
@@ -56,19 +52,9 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<FileExtensionContentTypeProvider>();
 
-var server = builder.Configuration["server"] ?? "localhost";
-var database = builder.Configuration["databse"] ?? "MyStoreDB";
-var port = builder.Configuration["port"] ?? "5433";
-var pass = builder.Configuration["password"] ?? "postgres";
-var user = builder.Configuration["dbuser"] ?? "postgres";
-var connectionString =
-    $"User ID={user};Password={pass};Server={server};Port={port};Database={database};Pooling=true;";
-//builder.Services.AddDbContext<StoreContext>(
-   // options => options.UseNpgsql(connectionString));
-
 builder.Services.AddDbContext<StoreContext>(
     options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-var test = builder.Configuration["Authentication:SecretForKey"];
+
 builder.Services.AddScoped<IStoreRepository, StoreRepository>();
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
