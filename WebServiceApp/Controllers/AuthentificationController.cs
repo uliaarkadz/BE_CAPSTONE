@@ -1,7 +1,10 @@
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.AspNetCore.Mvc;
+using WebServiceApp.Authentication;
+using WebServiceApp.Models;
 
 namespace WebServiceApp.Controllers;
 
@@ -30,49 +33,105 @@ public class AuthentificationController : ControllerBase
             UserRole = userRole;
         }
     }
+    private readonly UserManager<ApplicationUser> userManager;
+    private readonly RoleManager<IdentityRole> roleManager;
+    private readonly IConfiguration _configuration;
     private readonly IConfiguration _config;
-    public AuthentificationController(IConfiguration config)
+    public AuthentificationController(UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager,IConfiguration config)
     {
+        this.userManager = userManager;
+        this.roleManager = roleManager;
         _config = config;
 
     }
-    
 
-    [HttpPost("authenticate")]
-    public ActionResult<string> Authenticate(AuthenticationRequestBody authenticationRequestBody)
+    [HttpPost]
+    [Route("login")]
+    public async Task<IActionResult> Login(LoginModel loginModel)
     {
         var _secretForKey = _config["Authentication:SecretForKey"];
         var _issuer = _config["Authentication:Issuer"];
         var _audience = _config["Authentication:Audience"];
-        var user = ValidateUserCredentials(authenticationRequestBody.UserName, authenticationRequestBody.Password);
-        if (user == null)
+        var user = await userManager.FindByNameAsync(loginModel.Username);
+        if (user != null && await userManager.CheckPasswordAsync(user, loginModel.Password))
+        {var userRoles = await userManager.GetRolesAsync(user);
+
+            var authClaims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, user.UserName),
+                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
+            };
+            foreach (var userRole in userRoles)
+            {
+                authClaims.Add(new Claim(ClaimTypes.Role, userRole));
+            }
+            var authSigningKey = new SymmetricSecurityKey(Convert.FromBase64String(_secretForKey));
+            var token = new JwtSecurityToken(
+                issuer: _issuer,
+                audience: _audience,
+                expires: DateTime.Now.AddHours(3),
+                claims: authClaims,
+                signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
+            );
+            return Ok(new
+            {
+                token = new JwtSecurityTokenHandler().WriteToken(token),
+                expiration = token.ValidTo,
+                roles = userRoles
+            });
+        }
+        return Unauthorized();
+    }
+
+    [HttpPost]
+    [Route("register")]
+    public async Task<IActionResult> Register([FromBody] RegisterModel model)
+    {
+        var userExists = await userManager.FindByNameAsync(model.Username);
+        if (userExists != null)
+            return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });
+        ApplicationUser user = new ApplicationUser()
         {
-            return Unauthorized();
+            Email = model.Email,
+            SecurityStamp = Guid.NewGuid().ToString(),
+            UserName = model.Username
+        };
+        var result = await userManager.CreateAsync(user, model.Password);
+        if (!result.Succeeded)
+            return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
+
+        return Ok(new Response { Status = "Success", Message = "User created successfully!" });
+    }
+    
+    [HttpPost]
+    [Route("register-admin")]
+    public async Task<IActionResult> RegisterAdmin(RegisterModel model)
+    {
+        var userExists = await userManager.FindByNameAsync(model.Username);
+        if (userExists != null)
+            return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });
+
+        ApplicationUser user = new ApplicationUser()
+        {
+            Email = model.Email,
+            SecurityStamp = Guid.NewGuid().ToString(),
+            UserName = model.Username
+        };
+        var result = await userManager.CreateAsync(user, model.Password);
+        if (!result.Succeeded)
+            return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
+
+        if (!await roleManager.RoleExistsAsync(UserRoles.Admin))
+            await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
+        if (!await roleManager.RoleExistsAsync(UserRoles.User))
+            await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
+
+        if (await roleManager.RoleExistsAsync(UserRoles.Admin))
+        {
+            await userManager.AddToRoleAsync(user, UserRoles.Admin);
         }
 
-        var secutityKey =
-            new SymmetricSecurityKey(Convert.FromBase64String(_secretForKey));
-        var signingCredentials = new SigningCredentials(secutityKey, SecurityAlgorithms.HmacSha256);
-        var claimsForToken = new List<Claim>();
-        claimsForToken.Add(new Claim("sub", user.UserId.ToString()));
-        claimsForToken.Add(new Claim("given_name", user.FirstName));
-        claimsForToken.Add(new Claim("family_name", user.LastName));
-        claimsForToken.Add(new Claim("user_role", user.UserRole));
-        
-        var jwtSecurityToken = new JwtSecurityToken(
-            _issuer,
-            _audience,
-            claimsForToken,
-            DateTime.UtcNow,
-            DateTime.UtcNow.AddHours(1),
-            signingCredentials);
-        var tokenToReturn = new JwtSecurityTokenHandler()
-            .WriteToken(jwtSecurityToken);
-        return Ok(tokenToReturn);
+        return Ok(new Response { Status = "Success", Message = "User created successfully!" });
     }
-
-    private StoreUser ValidateUserCredentials(string? userName, string? password)
-    {
-        return new StoreUser(1, userName ?? "", "Yuliya", "Buiko", "admin");
-    }
+    
 }

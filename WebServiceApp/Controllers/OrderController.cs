@@ -2,9 +2,10 @@ using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using WebServiceApp.Models;
 using WebServiceApp.Services;
+using Microsoft.AspNetCore.Authorization;
 
 namespace WebServiceApp.Controllers;
-
+[Authorize]
 [ApiController]
 [Route("api/order/")]
 
@@ -18,7 +19,6 @@ public class OrderController : ControllerBase
         _storeRepository = storeRepository;
         _mapper = mapper;
     }
-    
     [HttpGet("user/{userId:int}")]
     public async Task<ActionResult<IEnumerable<OrderDto>>> GetOrders(int userId)
     {

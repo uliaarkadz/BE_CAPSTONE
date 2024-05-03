@@ -1,9 +1,13 @@
 using Microsoft.ApplicationInsights.Extensibility;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.HttpOverrides;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Serilog;
+using WebServiceApp.Authentication;
 using WebServiceApp.DbContext;
 using WebServiceApp.Services;
 
@@ -51,22 +55,32 @@ builder.Services.AddProblemDetails();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddSingleton<FileExtensionContentTypeProvider>();
+builder.Services.AddScoped<IStoreRepository, StoreRepository>();
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Services.AddDbContext<StoreContext>(
     options => options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+builder.Services.AddIdentity<ApplicationUser, IdentityRole>()
+    .AddEntityFrameworkStores<StoreContext>()
+    .AddDefaultTokenProviders();
 
-builder.Services.AddScoped<IStoreRepository, StoreRepository>();
-
-builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-builder.Services.AddAuthentication("Bearer").AddJwtBearer(options =>
+builder.Services.AddAuthentication(options =>
 {
+    options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+    options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+}).AddJwtBearer(options =>
+{
+    options.SaveToken = true;
+    options.RequireHttpsMetadata = false;
+
     options.TokenValidationParameters = new()
     {
         ValidateIssuer = true,
         ValidateAudience = true,
         ValidateIssuerSigningKey = true,
-        ValidIssuer = builder.Configuration["Authentification:Issuer"],
-        ValidAudience = builder.Configuration["Authentification:Audience"],
+        ValidIssuer = builder.Configuration["Authentication:Issuer"],
+        ValidAudience = builder.Configuration["Authentication:Audience"],
         IssuerSigningKey =
             new SymmetricSecurityKey(Convert.FromBase64String(builder.Configuration["Authentication:SecretForKey"]))
     };
@@ -85,11 +99,11 @@ builder.Services.AddMvc(options =>
 });
 builder.Services.AddCors();
 
-builder.Services.AddAuthorization(options => options.AddPolicy(("admin"), policy =>
+/*builder.Services.AddAuthorization(options => options.AddPolicy(("admin"), policy =>
 {
     policy.RequireAuthenticatedUser();
     policy.RequireClaim("user_role", "admin");
-}));
+}));*/
 
 var app = builder.Build();
 
