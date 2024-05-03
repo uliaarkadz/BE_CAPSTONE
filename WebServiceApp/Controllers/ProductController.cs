@@ -1,14 +1,15 @@
 using AutoMapper;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using WebServiceApp.Authentication;
 using WebServiceApp.Models;
 using WebServiceApp.Services;
 
 
 namespace WebServiceApp.Controllers;
 
+
 [ApiController]
-//[Authorize(Policy = "admin")]
 [Route("api/products")]
 public class ProductController : ControllerBase
 {
@@ -21,6 +22,7 @@ public class ProductController : ControllerBase
         _mapper = mapper;
     }
     
+
     [HttpGet]
     public async Task<ActionResult<IEnumerable<ProductDto>>> GetProducts()
     {
@@ -38,7 +40,7 @@ public class ProductController : ControllerBase
         
         return Ok(_mapper.Map<ProductDto>(product));
     }
-
+    [Authorize(Roles = UserRoles.Admin)]
     [HttpPost]
     public async Task<ActionResult<ProductDto>> CreateProduct(
         ProductCreate productCreate)
@@ -54,7 +56,7 @@ public class ProductController : ControllerBase
                 id = createdProductReturn.Id
             }, createdProductReturn);
     }
-    
+    [Authorize(Roles = UserRoles.Admin)]
     [HttpPut("{productId:int}")]
     public async Task<ActionResult> UpdateProduct(int productId,
         ProductUpdate product)
@@ -69,7 +71,7 @@ public class ProductController : ControllerBase
 
         return NoContent();
     }
-
+    [Authorize(Roles = UserRoles.Admin)]
     [HttpDelete("{productId:int}")]
     public async Task<ActionResult> DeleteProduct(int productId)
     {
