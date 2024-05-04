@@ -18,6 +18,7 @@
 - Postgres SQL
 - Serilog
 - MVC
+- Azure App Services
 
 ## User Stories
 
@@ -37,18 +38,23 @@
 
 List of different routes and their purpose in the app
 
-|   Endpoint   | Method |         Response          |                         Other                         |
-|:------------:|:------:|:-------------------------:|:-----------------------------------------------------:|
-|   /product   |  GET   |  Return all the product   | params: search by name, description, sort, pagination |
-|   /product   |  POST  |    Create new product     |                                                       |
-| /product/:id |  GET   |   Return products by id   |                                                       |
-| /product/:id |  PUT   |   Update product by id    |                                                       |
-| /product/:id | DELETE |   Delete product by id    |                                                       |
-|    /cart     |  GET   | Return all items in cart  |                                                       |
-|    /cart     |  POST  |   Add new item to cart    |                                                       |
-|  /cart/:id   |  PUT   | Update item in cart by id |                                                       |
-|  /cart/:id   | DELETE | Delete item in cart by id |                                                       |
+|   Endpoint    | Method |                Response                |                         Other                         |
+|:-------------:|:------:|:--------------------------------------:|:-----------------------------------------------------:|
+|   /product    |  GET   |         Return all the product         | params: search by name, description, sort, pagination |
+|   /product    |  POST  |           Create new product           |                                                       |
+| /product/:id  |  GET   |         Return products by id          |                                                       |
+| /product/:id  |  PUT   |          Update product by id          |                                                       |
+| /product/:id  | PATCH  | Update product specific property by id |                                                       |
+| /product/:id  | DELETE |          Delete product by id          |                                                       |
+|     /cart     |  GET   |        Return all items in cart        |                                                       |
+|     /cart     |  POST  |          Add new item to cart          |                                                       |
+|   /cart/:id   |  PUT   |       Update item in cart by id        |                                                       |
+|   /cart/:id   | DELETE |       Delete item in cart by id        |                                                       |
+|    /orders    |  GET   |         Return all user orders         |                                                       |
+|  /orders      |  POST  |           Add new user order           |                                                       |
+|  /orders/:id  |  PUT   |           Update order                 |                                                       |
+|  /orders/:id  | DELETE |              Delete order              |                                                       |
 
 ## ERD (Entity Relationship Diagram)
 
-![Entity Relationship Diagram](./images/capstoneERD.png)
+![Entity Relationship Diagram](./images/ERD_Store.png)

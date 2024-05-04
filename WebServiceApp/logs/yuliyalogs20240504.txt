@@ -1,0 +1,52 @@
+2024-05-04 10:28:12.296 -04:00 [INF] Application is shutting down...
+2024-05-04 10:28:12.298 -04:00 [DBG] Hosting stopping
+2024-05-04 10:28:12.309 -04:00 [DBG] Hosting stopped
+2024-05-04 10:34:09.202 -04:00 [DBG] Initializing Razor view compiler with no compiled views.
+2024-05-04 10:34:09.236 -04:00 [DBG] Registered model binder providers, in the following order: ["Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BinderTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ServicesModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.BodyModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.HeaderModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FloatingPointTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.EnumTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DateTimeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.SimpleTypeModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.TryParseModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CancellationTokenModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ByteArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormFileModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.FormCollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.KeyValuePairModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.DictionaryModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ArrayModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.CollectionModelBinderProvider","Microsoft.AspNetCore.Mvc.ModelBinding.Binders.ComplexObjectModelBinderProvider"]
+2024-05-04 10:34:09.244 -04:00 [INF] User profile is available. Using '/Users/ulia/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2024-05-04 10:34:09.259 -04:00 [DBG] Hosting starting
+2024-05-04 10:34:09.262 -04:00 [DBG] Reading data from file '/Users/ulia/.aspnet/DataProtection-Keys/key-94a5b716-f00f-43b5-ac2c-325118abc25a.xml'.
+2024-05-04 10:34:09.264 -04:00 [DBG] Found key {94a5b716-f00f-43b5-ac2c-325118abc25a}.
+2024-05-04 10:34:09.267 -04:00 [DBG] Considering key {94a5b716-f00f-43b5-ac2c-325118abc25a} with expiration date 2024-07-17 02:44:31Z as default key.
+2024-05-04 10:34:09.268 -04:00 [DBG] Forwarded activator type request from Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Version=8.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60 to Microsoft.AspNetCore.DataProtection.AuthenticatedEncryption.ConfigurationModel.AuthenticatedEncryptorDescriptorDeserializer, Microsoft.AspNetCore.DataProtection, Culture=neutral, PublicKeyToken=adb9793829ddae60
+2024-05-04 10:34:09.269 -04:00 [DBG] Using managed symmetric algorithm 'System.Security.Cryptography.Aes'.
+2024-05-04 10:34:09.269 -04:00 [DBG] Using managed keyed hash algorithm 'System.Security.Cryptography.HMACSHA256'.
+2024-05-04 10:34:09.270 -04:00 [DBG] Using key {94a5b716-f00f-43b5-ac2c-325118abc25a} as the default key.
+2024-05-04 10:34:09.270 -04:00 [DBG] Key ring with default key {94a5b716-f00f-43b5-ac2c-325118abc25a} was loaded during application startup.
+2024-05-04 10:34:09.289 -04:00 [INF] Now listening on: http://localhost:5102
+2024-05-04 10:34:09.290 -04:00 [DBG] Loaded hosting startup assembly WebServiceApp
+2024-05-04 10:34:09.290 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2024-05-04 10:34:09.290 -04:00 [INF] Hosting environment: Development
+2024-05-04 10:34:09.290 -04:00 [INF] Content root path: /Users/ulia/development/seir_seal/projects/CAPSTONE/BECapstone/WebServiceApp
+2024-05-04 10:34:09.290 -04:00 [DBG] Hosting started
+2024-05-04 10:34:09.542 -04:00 [DBG] Connection id "0HN3C8T19DLLJ" received FIN.
+2024-05-04 10:34:09.544 -04:00 [DBG] Connection id "0HN3C8T19DLLJ" accepted.
+2024-05-04 10:34:09.545 -04:00 [DBG] Connection id "0HN3C8T19DLLJ" started.
+2024-05-04 10:34:09.547 -04:00 [DBG] Connection id "0HN3C8T19DLLJ" sending FIN because: "The Socket transport's send loop completed gracefully."
+2024-05-04 10:34:09.549 -04:00 [DBG] Connection id "0HN3C8T19DLLJ" disconnecting.
+2024-05-04 10:34:09.550 -04:00 [DBG] Connection id "0HN3C8T19DLLJ" stopped.
+2024-05-04 10:34:09.638 -04:00 [DBG] Connection id "0HN3C8T19DLLK" accepted.
+2024-05-04 10:34:09.639 -04:00 [DBG] Connection id "0HN3C8T19DLLL" accepted.
+2024-05-04 10:34:09.639 -04:00 [DBG] Connection id "0HN3C8T19DLLK" started.
+2024-05-04 10:34:09.639 -04:00 [DBG] Connection id "0HN3C8T19DLLL" started.
+2024-05-04 10:34:09.648 -04:00 [INF] Request starting HTTP/1.1 GET http://localhost:5102/ - null null
+2024-05-04 10:34:09.648 -04:00 [DBG] Wildcard detected, all requests with hosts will be allowed.
+2024-05-04 10:34:09.663 -04:00 [DBG] The request path  does not match the path filter
+2024-05-04 10:34:09.663 -04:00 [WRN] Failed to determine the https port for redirect.
+2024-05-04 10:34:09.671 -04:00 [DBG] No candidates found for the request path '/'
+2024-05-04 10:34:09.672 -04:00 [DBG] Request did not match any endpoints
+2024-05-04 10:34:09.710 -04:00 [DBG] AuthenticationScheme: Bearer was not authenticated.
+2024-05-04 10:34:09.711 -04:00 [DBG] Connection id "0HN3C8T19DLLK" completed keep alive response.
+2024-05-04 10:34:09.711 -04:00 [INF] Request finished HTTP/1.1 GET http://localhost:5102/ - 404 0 null 65.123ms
+2024-05-04 10:34:09.711 -04:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET http://localhost:5102/, Response status code: 404
+2024-05-04 10:34:11.009 -04:00 [DBG] Connection id "0HN3C8T19DLLL" received FIN.
+2024-05-04 10:34:11.009 -04:00 [DBG] Connection id "0HN3C8T19DLLK" received FIN.
+2024-05-04 10:34:11.010 -04:00 [DBG] Connection id "0HN3C8T19DLLL" sending FIN because: "The Socket transport's send loop completed gracefully."
+2024-05-04 10:34:11.011 -04:00 [DBG] Connection id "0HN3C8T19DLLL" disconnecting.
+2024-05-04 10:34:11.011 -04:00 [DBG] Connection id "0HN3C8T19DLLK" sending FIN because: "The Socket transport's send loop completed gracefully."
+2024-05-04 10:34:11.011 -04:00 [DBG] Connection id "0HN3C8T19DLLK" disconnecting.
+2024-05-04 10:34:11.012 -04:00 [DBG] Connection id "0HN3C8T19DLLL" stopped.
+2024-05-04 10:34:11.012 -04:00 [DBG] Connection id "0HN3C8T19DLLK" stopped.
+2024-05-04 10:34:14.896 -04:00 [INF] Application is shutting down...
+2024-05-04 10:34:14.897 -04:00 [DBG] Hosting stopping
+2024-05-04 10:34:14.905 -04:00 [DBG] Hosting stopped
